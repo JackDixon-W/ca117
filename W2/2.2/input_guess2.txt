@@ -1,0 +1,8 @@
+10
+higher
+7
+higher
+16
+lower
+19
+correct

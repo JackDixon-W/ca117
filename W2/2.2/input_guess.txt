@@ -1,0 +1,8 @@
+5
+higher
+10
+higher
+18
+lower
+15
+correct
