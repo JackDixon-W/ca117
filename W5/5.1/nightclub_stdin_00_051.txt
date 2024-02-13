@@ -1,0 +1,6 @@
+10
+enter 6
+enter 5
+leave 3
+enter 7
+enter 2
