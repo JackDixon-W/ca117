@@ -31,6 +31,10 @@ class Circle(object):
     newCentre = self.midpoint(other)
     newRadius = self.radius + other.radius
     return Circle(newCentre, newRadius)
+    # Shouldn't need midpoint method here
+    # centre = self.centre.midpoint(other.centre)
+    # ^ this would have worked fine
+
 
 def main():
     p1 = Point()
