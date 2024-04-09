@@ -1,33 +1,38 @@
 import sys
 
-class DFSPaths(object):
+class BFSPaths(object):
   def __init__(self, g, s):
     self.g = g
     self.s = s
     self.marked = [False] * g.V
     self.parent = [-1] * g.V
-    self.dfs(s)
+    self.bfs(s)
 
-  def dfs(self, s):
+  def bfs(self, s):
+    queue = [s]
     self.marked[s] = True
+    
+    while queue:
+      tmp = queue.pop(0)
+      self.marked[tmp] = True
+      for point in self.g.adj[tmp]:
+        if not self.marked[point]:
+          queue.append(point)
+          self.parent[point] = tmp
+          self.marked[point] = True
 
-    for w in self.g.adj[s]:
-      if not self.marked[w]:
-        self.parent[w] = s
-        self.dfs(w)
+  def hasPathTo(self, c):
+    return self.marked[c]
 
-  def hasPathTo(self, v):
-    return self.marked[v]
-
-  def pathTo(self, v):
-    if not self.hasPathTo(v):
+  def pathTo(self, d):
+    if not self.hasPathTo(d):
       return []
-
-    path = [v]
-    while v != self.s:
-      v = self.parent[v]
-      path.append(v)
-
+    
+    path = [d]
+    while d != self.s:
+      d = self.parent[d]
+      path.append(d)
+    
     return path[::-1]
 
 class Graph(object):
@@ -70,11 +75,11 @@ def main():
             v, w = [int(t) for t in line.strip().split()]
             g.addEdge(v, w)
 
-    dfs = DFSPaths(g, 4)
+    bfs = BFSPaths(g, 4)
 
-    print(dfs.hasPathTo(2))
+    print(bfs.hasPathTo(2))
 
-    print(dfs.pathTo(2))
+    print(bfs.pathTo(2))
 
 if __name__ == '__main__':
     main()
